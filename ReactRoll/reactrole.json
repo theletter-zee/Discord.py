@@ -1,14 +1,28 @@
-[
-    {
-        "role_name": "Py-helper\ud83d\udc0d",
-        "role_id": 784491160269750332,
-        "emoji": "\ud83d\udc0d",
-        "message_id": 802440483845701633
-    },
-    {
-        "role_name": "Discord-helper",
-        "role_id": 789148391569489930,
-        "emoji": "\ud83d\udfe3",
-        "message_id": 802440705049624596
-    }
-]
+{
+  "822557972215234590": {
+    "roles": [
+      {
+        "role_name": "Owner",
+        "role_id": 425067850248486912,
+        "emoji": "\ud83e\udd67",
+        "message_id": 822557972215234590
+      }
+    ]
+  },
+  "824796243427196978": {
+    "roles": [
+      {
+        "role_name": "Visitor",
+        "role_id": 425068234216046611,
+        "emoji": "\ud83c\udf4b",
+        "message_id": 824796243427196978
+      },
+      {
+        "role_name": "Rythm",
+        "role_id": 738555883872714752,
+        "emoji": "\ud83c\udf4d",
+        "message_id": 824796243427196978
+      }
+    ]
+  }
+}
