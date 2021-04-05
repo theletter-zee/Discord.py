@@ -1,10 +1,3 @@
-import discord
-from discord.ext import commands
-
-import json
-import os
-
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
 class saveRoles(commands.Cog):
@@ -50,23 +43,51 @@ class mod(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-
         if payload.member.bot:
             return
-        else:
-            with open('roles.json','r') as f:
-                role_id = json.load(f)
 
-            for i in role_id:
-                msg_id = i
+        # -  -  - Create Role -  -  - #
 
-            rolenames = await saveRoles(str(msg_id)).read_roles()
+        with open('roles.json','r') as f:
+            role_id = json.load(f)
 
-            for i in rolenames[str(msg_id)]['roles']:
-                if i['emoji'] == payload.emoji.name and i['message_id'] == payload.message_id:
-                    role = discord.utils.get(self.bot.get_guild(payload.guild_id).roles, id=i['role_id'])
+        for i in role_id:
+            msg_id = i
 
-                    await payload.member.add_roles(role)
+        rolenames = await saveRoles(str(msg_id)).read_roles()
+
+        for i in rolenames[str(msg_id)]['roles']:
+            if i['emoji'] == payload.emoji.name and i['message_id'] == payload.message_id:
+                role = discord.utils.get(self.bot.get_guild(payload.guild_id).roles, id=i['role_id'])
+
+                await payload.member.add_roles(role)
+        
+        # -  -  - Message Cache Role -  -  - #
+
+        if "\ud83c\udfa5" == payload.emoji.name and payload.id == 828696941281148950:
+            print("This works.")
+
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_remove(self, payload):
+        # -  -  - Create Role -  -  - #
+
+        with open('roles.json','r') as f:
+            role_id = json.load(f)
+
+        for i in role_id:
+            msg_id = i
+
+        rolenames = await saveRoles(str(msg_id)).read_roles()
+
+        for i in rolenames[str(msg_id)]['roles']:
+            if i['emoji'] == payload.emoji.name and i['message_id'] == payload.message_id:
+                role = discord.utils.get(self.bot.get_guild(payload.guild_id).roles, id=i['role_id'])
+
+                await self.bot.get_guild(payload.guild_id).get_member(payload.user_id).remove_roles(role)
+        
+
+
 
 
     
@@ -153,7 +174,9 @@ class mod(commands.Cog):
                 await ctx.send(file=discord.File('addroleExample.png'))
         except discord.Forbidden:
             await ctx.channel.send('Cannot edit msg by another user')
-            
+
+
+
 
 def setup(bot):
     bot.add_cog(saveRoles(bot))
