@@ -153,3 +153,8 @@ class mod(commands.Cog):
                 await ctx.send(file=discord.File('addroleExample.png'))
         except discord.Forbidden:
             await ctx.channel.send('Cannot edit msg by another user')
+            
+
+def setup(bot):
+    bot.add_cog(saveRoles(bot))
+    bot.add_cog(mod(bot))
