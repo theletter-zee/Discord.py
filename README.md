@@ -1,5 +1,3 @@
 # **Discord.py**
 
-👋 Hello person from the internet 🌐
-    
-    use Cola.py as a Boiler Code for your discord.py project
+Added changes that allows user to add multiple roles to an embed instead of just one.
